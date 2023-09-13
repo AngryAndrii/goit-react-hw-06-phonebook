@@ -7,6 +7,7 @@ export const StyledForm = styled.form`
   flex-direction: column;
   align-items: flex-start;
   row-gap: 15px;
+
   label {
     display: flex;
     column-gap: 10px;

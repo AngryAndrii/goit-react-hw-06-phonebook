@@ -1,9 +1,12 @@
+import { useSelector } from 'react-redux';
+import { StyledList } from './Contacts.styled';
+
 export const Contacts = ({ items, deleteFunction }) => {
   return (
-    <ul>
+    <StyledList>
       {items.map(el => (
         <li key={el.id}>
-          {el.name}: {el.number}
+          <span>{el.name}</span> : {el.number}
           <button
             onClick={() => {
               deleteFunction(el.id);
@@ -13,6 +16,6 @@ export const Contacts = ({ items, deleteFunction }) => {
           </button>
         </li>
       ))}
-    </ul>
+    </StyledList>
   );
 };

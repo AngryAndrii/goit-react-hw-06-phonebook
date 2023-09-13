@@ -4,46 +4,10 @@ import { PhoneBook } from './PhoneBook/PhoneBook';
 import { Contacts } from './Contacts/Contacts';
 import { Filter } from './Filter/Filter';
 import { nanoid } from 'nanoid';
+import { useSelector } from 'react-redux';
 
 export const App = () => {
-  const [contacts, setContacts] = useState(
-    JSON.parse(localStorage.getItem('contacts')) ?? []
-  );
-  const [filter, setFilter] = useState('');
-
-  useEffect(() => {
-    localStorage.setItem('contacts', JSON.stringify(contacts));
-  }, [contacts]);
-
-  const changeFilter = newFilter => {
-    setFilter(newFilter);
-  };
-
-  const handleDelete = id => {
-    setContacts(prevState => prevState.filter(el => el.id !== id));
-  };
-
-  const addToMainState = ({ name, number }) => {
-    const isIn = contacts.some(
-      el => el.name.toLowerCase() === name.toLowerCase()
-    );
-    if (isIn) {
-      alert(`${name} is already in contacts.`);
-      return;
-    }
-
-    const newContact = {
-      name,
-      number,
-      id: nanoid(),
-    };
-    console.log(contacts);
-    setContacts(prevContacts => [...prevContacts, newContact]);
-  };
-
-  const visibleContacts = contacts.filter(el =>
-    el.name.toLowerCase().includes(filter.toLowerCase())
-  );
+  const contacts = useSelector(state => state.contacts);
 
   return (
     <>
