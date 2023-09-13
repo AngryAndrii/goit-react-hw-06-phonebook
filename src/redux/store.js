@@ -12,16 +12,49 @@ const initialState = {
 };
 
 const rootReducer = (state = initialState, action) => {
-  return state;
+  switch (action.type) {
+    case 'contacts/delete': {
+      return {
+        ...state,
+        contacts: state.contacts.filter(el => el.id !== action.payload),
+      };
+    }
+
+    case 'contacts/filter': {
+      return {
+        ...state,
+        contacts: state.contacts.filter(el =>
+          el.name.toLowerCase().includes(action.payload.toLowerCase())
+        ),
+      };
+    }
+
+    default:
+      return state;
+  }
 };
 
 const enhancer = devToolsEnhancer();
 
 export const store = createStore(rootReducer, enhancer);
 
-const addContact = () => {
+export const addContact = () => {
   return {
-    type: 'contact/add',
+    type: 'contacts/add',
     payload: 'Payload value',
+  };
+};
+
+export const filterContacts = value => {
+  return {
+    type: 'contacts/filter',
+    payload: value,
+  };
+};
+
+export const deleteContact = contactId => {
+  return {
+    type: 'contacts/delete',
+    payload: contactId,
   };
 };
