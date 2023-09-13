@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { StyledForm } from './PhoneBook.style';
 
 export const PhoneBook = ({ addToAppState }) => {
   const [name, setName] = useState('');
@@ -21,7 +22,7 @@ export const PhoneBook = ({ addToAppState }) => {
 
   return (
     <>
-      <form action="" onSubmit={handleSubmit}>
+      <StyledForm action="" onSubmit={handleSubmit}>
         <label htmlFor="">
           Name
           <input
@@ -48,8 +49,8 @@ export const PhoneBook = ({ addToAppState }) => {
             value={number}
           />
         </label>
-        <button type="submit">Submit</button>
-      </form>
+        <button type="submit">Add to contacts</button>
+      </StyledForm>
     </>
   );
 };

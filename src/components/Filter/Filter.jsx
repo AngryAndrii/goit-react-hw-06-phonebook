@@ -1,9 +1,9 @@
 export const Filter = ({ value, handleFilterChange }) => {
   return (
     <>
-      <h3>Filter</h3>
       <input
         type="text"
+        placeholder="search in phonebook"
         defaultValue={value}
         onChange={evt => {
           handleFilterChange(evt.target.value);
