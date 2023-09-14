@@ -23,7 +23,7 @@ const rootReducer = (state = initialState, action) => {
     case 'contacts/filter': {
       return {
         ...state,
-        contacts: state.contacts.filter(el =>
+        value: state.contacts.filter(el =>
           el.name.toLowerCase().includes(action.payload.toLowerCase())
         ),
       };
