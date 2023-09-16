@@ -13,7 +13,6 @@ export const Filter = () => {
       <input
         type="text"
         placeholder="search in phonebook"
-        // defaultValue={filter}
         onChange={changeFilter}
       />
     </>
