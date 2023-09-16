@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { StyledList } from './Contacts.styled';
-import { deleteContact } from 'redux/store';
+import { deleteContact } from 'redux/contactsSlice';
 
 export const Contacts = () => {
   const dispatch = useDispatch();
