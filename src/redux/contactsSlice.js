@@ -1,4 +1,5 @@
 import { nanoid } from 'nanoid';
+import { createAction, createReducer } from '@reduxjs/toolkit';
 
 const contacts = [
   { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
@@ -7,31 +8,35 @@ const contacts = [
   { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
 ];
 
-export const addContact = (name, number) => {
+export const addContact = createAction('contacts/add', (name, number) => {
   return {
-    type: 'contacts/add',
     payload: {
       id: nanoid(),
       name: name,
       number: number,
     },
   };
-};
+});
 
-export const deleteContact = contactId => {
-  return {
-    type: 'contacts/delete',
-    payload: contactId,
-  };
-};
+export const deleteContact = createAction('contacts/delete');
 
-export const contactsReducer = (state = contacts, action) => {
-  switch (action.type) {
-    case 'contacts/add':
+export const contactsReducer = createReducer(contacts, builder =>
+  builder
+    .addCase(addContact, (state, action) => {
       return [...state, action.payload];
-    case 'contacts/delete':
+    })
+    .addCase(deleteContact, (state, action) => {
       return state.filter(el => el.id !== action.payload);
-    default:
-      return state;
-  }
-};
+    })
+);
+
+// export const contactsReducer = (state = contacts, action) => {
+//   switch (action.type) {
+//     case 'contacts/add':
+//       return [...state, action.payload];
+//     case 'contacts/delete':
+//       return state.filter(el => el.id !== action.payload);
+//     default:
+//       return state;
+//   }
+// };
