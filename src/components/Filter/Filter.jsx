@@ -1,13 +1,11 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { filterContacts } from 'redux/store';
+import { setFilter } from 'redux/store';
 
 export const Filter = () => {
   const dispatch = useDispatch();
 
-  const filter = useSelector(state => state.filter);
-
   const changeFilter = event => {
-    dispatch(filterContacts(event.target.value));
+    dispatch(setFilter(event.target.value));
   };
 
   return (
@@ -15,7 +13,7 @@ export const Filter = () => {
       <input
         type="text"
         placeholder="search in phonebook"
-        defaultValue={filter}
+        // defaultValue={filter}
         onChange={changeFilter}
       />
     </>

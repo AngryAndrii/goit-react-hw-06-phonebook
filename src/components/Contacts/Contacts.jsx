@@ -3,12 +3,18 @@ import { StyledList } from './Contacts.styled';
 import { deleteContact } from 'redux/store';
 
 export const Contacts = () => {
-  const contacts = useSelector(state => state.contacts);
   const dispatch = useDispatch();
+  const contacts = useSelector(state => state.contacts);
+
+  const filterText = useSelector(state => state.filter);
+
+  const visibleContacts = contacts.filter(el =>
+    el.name.toLowerCase().includes(filterText.toLowerCase())
+  );
 
   return (
     <StyledList>
-      {contacts.map(el => (
+      {visibleContacts.map(el => (
         <li key={el.id}>
           <span>{el.name}</span> : {el.number}
           <button onClick={() => dispatch(deleteContact(el.id))}>Delete</button>
