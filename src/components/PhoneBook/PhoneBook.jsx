@@ -1,6 +1,6 @@
 import { StyledForm } from './PhoneBook.style';
 import { useDispatch } from 'react-redux';
-import { addContact } from 'redux/store';
+import { addContact } from 'redux/contactsSlice';
 
 export const PhoneBook = () => {
   const dispatch = useDispatch();
